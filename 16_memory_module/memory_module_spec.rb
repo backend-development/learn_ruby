@@ -9,47 +9,47 @@ require "multiplier_with_memory"
 
 describe Memory do
   it "is a module" do
-    Memory.class.should == Module
+    expect(Memory.class).to eq(Module)
   end
 end
 
 describe Greeter do
   it "says hello" do
-    Greeter.new.greeting.should == "Hello World!"
+    expect(Greeter.new.greeting).to eq("Hello World!")
   end
 
   it "says hello to someone" do
-    Greeter.new.greeting("Bob").should == "Hello Bob!"
+    expect(Greeter.new.greeting("Bob")).to eq("Hello Bob!")
   end
 
   it "can remember old greetings" do
     g = Greeter.new
     g.greeting
     g.greeting("Bob")
-    g.history.should include "World"
-    g.history.should include "Bob"
+    expect(g.history).to include "World"
+    expect(g.history).to include "Bob"
   end
 end
 
 describe Multiplier do
   it "can double a number" do
     doubler = Multiplier.new(2)
-    doubler.do(4).should == 8
-    doubler.do(7).should == 14
+    expect(doubler.do(4)).to eq(8)
+    expect(doubler.do(7)).to eq(14)
   end
 
   it "can quadruple a number" do
     q = Multiplier.new(4)
-    q.do(4).should == 16
-    q.do(7).should == 28
+    expect(q.do(4)).to eq(16)
+    expect(q.do(7)).to eq(28)
   end
 
   it "can remember old input" do
     doubler = Multiplier.new(2)
-    doubler.do(4).should == 8
-    doubler.do(7).should == 14
-    doubler.history.should include 4
-    doubler.history.should include 7
-    doubler.history.should_not include 2
+    expect(doubler.do(4)).to eq(8)
+    expect(doubler.do(7)).to eq(14)
+    expect(doubler.history).to include 4
+    expect(doubler.history).to include 7
+    expect(doubler.history).not_to include 2
   end
 end
