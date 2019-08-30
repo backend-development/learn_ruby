@@ -1,10 +1,18 @@
+# frozen_string_literal: true
+
 # # Topics
 #
-# * Hash
+# * Hash - see 
 # * Array
 # * instance variables
 # * regular expressions
 #
+# # Hints
+#
+# - learn what a Hash can do at https://ruby-doc.org/core/Hash.html
+# - if you run into troubles with quotes, try %() instead of "", see
+#   https://ruby-doc.org/core-2.6.3/doc/syntax/literals_rdoc.html#label-Percent+Strings
+
 
 require 'dictionary'
 
@@ -19,13 +27,13 @@ describe Dictionary do
 
   it 'can add whole entries with keyword and definition' do
     @d.add('fish' => 'aquatic animal')
-    expect(@d.entries).to eq({'fish' => 'aquatic animal'})
+    expect(@d.entries).to eq('fish' => 'aquatic animal')
     expect(@d.keywords).to eq(['fish'])
   end
 
   it 'add keywords (without definition)' do
     @d.add('fish')
-    expect(@d.entries).to eq({'fish' => nil})
+    expect(@d.entries).to eq('fish' => nil)
     expect(@d.keywords).to eq(['fish'])
   end
 
@@ -55,29 +63,29 @@ describe Dictionary do
     expect(@d.find('nothing')).to be_empty
   end
 
-  it "finds an entry" do
+  it 'finds an entry' do
     @d.add('fish' => 'aquatic animal')
-    expect(@d.find('fish')).to eq({'fish' => 'aquatic animal'})
+    expect(@d.find('fish')).to eq('fish' => 'aquatic animal')
   end
 
   it 'finds multiple matches from a prefix and returns the entire entry (keyword + definition)' do
     @d.add('fish' => 'aquatic animal')
     @d.add('fiend' => 'wicked person')
     @d.add('great' => 'remarkable')
-    expect(@d.find('fi')).to eq({'fish' => 'aquatic animal', 'fiend' => 'wicked person'})
+    expect(@d.find('fi')).to eq('fish' => 'aquatic animal', 'fiend' => 'wicked person')
   end
 
   it 'lists keywords alphabetically' do
     @d.add('zebra' => 'African land animal with stripes')
     @d.add('fish' => 'aquatic animal')
     @d.add('apple' => 'fruit')
-    expect(@d.keywords).to eq(%w(apple fish zebra))
+    expect(@d.keywords).to eq(%w[apple fish zebra])
   end
 
   it 'can produce printable output like so: [keyword] "definition"' do
     @d.add('zebra' => 'African land animal with stripes')
     @d.add('fish' => 'aquatic animal')
     @d.add('apple' => 'fruit')
-    expect(@d.printable).to eq(%Q{[apple] "fruit"\n[fish] "aquatic animal"\n[zebra] "African land animal with stripes"})
+    expect(@d.printable).to eq(%([apple] "fruit"\n[fish] "aquatic animal"\n[zebra] "African land animal with stripes"))
   end
 end

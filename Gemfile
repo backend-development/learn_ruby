@@ -1,6 +1,7 @@
-source :rubygems
+# frozen_string_literal: true
 
-ruby '2.3.3'
+source 'https://rubygems.org'
 
-gem "rake"
-gem "rspec"
+gem 'rake'
+gem 'rspec'
+gem 'rubocop'
